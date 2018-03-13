@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FParseTest", "FParseTest\FParseTest.fsproj", "{88444BED-F66D-410A-9B12-0DBE87A88CB4}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "RobotsTxtParser", "FParseTest\RobotsTxtParser.fsproj", "{88444BED-F66D-410A-9B12-0DBE87A88CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

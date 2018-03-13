@@ -53,10 +53,13 @@
     <Reference Include="FParsec-Pipes">
       <HintPath>..\packages\FParsec-Pipes.0.4.0\lib\net45\FParsec-Pipes.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="DomainModel.fs" />
+    <Compile Include="AST.fs" />
     <Compile Include="Parsers.fs" />
     <Compile Include="Program.fs" />
     <None Include="packages.config" />
