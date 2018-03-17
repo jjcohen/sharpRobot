@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{88444BED-F66D-410A-9B12-0DBE87A88CB4}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FParseTest/Parsers.fs">
+    <Files>
+      <File FileName="FParseTest/Program.fs" Line="74" Column="21" />
+      <File FileName="FParseTest/Parsers.fs" Line="65" Column="28" />
+      <File FileName="FParseTest/AST.fs" Line="25" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../fscrape/fscrape/Program.fs" line="87" offsetX="160" offsetY="1278" expression="doc" liveUpdate="True" />
+    <Watch file="../fscrape/fscrape/Barbican.fs" line="74" offsetX="357" offsetY="1095" expression="link" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.RobotsTxtParser PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

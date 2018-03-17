@@ -1,11 +1,11 @@
-﻿/// This the the abstract syntax tree for the robots.txt file 
-module AST
+﻿module AST
 
 type URL = URL of string
 type RelativePath = RelativePath of string
 type UserAgent = UserAgent of string
 
 type NonGroupLine =
+| BlankLine of char
 | Comment of string
 | Sitemap of URL
 
@@ -13,9 +13,14 @@ type GroupLine =
 | Disallow of RelativePath
 | Allow of RelativePath
 
-type Line = 
-| GroupLine of GroupLine
-| NonGroupLine of NonGroupLine
+type Line =
+| LineNonGroupLine of NonGroupLine
+| LineGroupLine of GroupLine
 
-type RulesGroup = RulesGroup of (UserAgent seq) * (GroupLine seq) //* (NonGroupLine seq) option
-type RobotsTxt = Root of URL * (NonGroupLine seq) option * RulesGroup seq
+type RulesGroup = RulesGroup of (UserAgent seq) * (GroupLine seq)
+
+type Sections = 
+| SectionsRulesGroup of RulesGroup
+| SectionsNonGroupLine of NonGroupLine
+
+type RobotsTxt = RobotsTxt of Sections seq
