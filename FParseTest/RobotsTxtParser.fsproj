@@ -62,6 +62,9 @@
     <Compile Include="AST.fs" />
     <Compile Include="Parsers.fs" />
     <Compile Include="Program.fs" />
+    <None Include="Test.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />

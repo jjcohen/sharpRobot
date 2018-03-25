@@ -47,27 +47,44 @@ let rx text parser =
     .>> optional comment
 
 let userAgent = rx "user-agent" (many1Chars (noneOf ". \t\n <>#%{}|\"\\^~[]`")) |>> UserAgent
-let disallow = rx "disallow" relativePath |>> RelativePath |>> Disallow 
-let allow = rx "allow" relativePath |>> RelativePath |>> Allow
+let disallow = rx "disallow" relativePath |>> RelativePath |>> GroupLine.Disallow 
+let allow = rx "allow" relativePath |>> RelativePath |>> GroupLine.Allow
 let sitemap = rx "sitemap" url |>> URL |>> Sitemap
 
-let groupLine = choice [disallow; allow]
-let nonGroupLine =
-    choice [(comment |>> SectionsNonGroupLine);
-            (sitemap |>> SectionsNonGroupLine);
-            (blankLine |>> SectionsNonGroupLine)]
-let lineNonGroupLine =
-    choice [(comment |>> LineNonGroupLine);
-            (sitemap |>> LineNonGroupLine);
-            (blankLine |>> LineNonGroupLine)]
+let groupLine =
+    choice [
+        disallow
+        allow
+        comment |>> GroupLine.Comment
+        sitemap |>> GroupLine.Sitemap
+        blankLine |>> GroupLine.BlankLine ]
 
+let nonGroupLine =
+    choice [
+        comment |>> NonGroupLine.Comment
+        sitemap |>> NonGroupLine.Sitemap
+        blankLine |>> NonGroupLine.BlankLine ]
+
+let filterUnnecessary input =
+    input
+    |> List.filter
+        (function
+            | GroupLine.Comment _ -> false
+            | GroupLine.BlankLine _ -> false
+            | _ -> true) 
+
+let filt input =
+    match input with
+    | Sections.NonGroupLine x ->
+        match x with 
+        | NonGroupLine.Comment _ -> None
+        | NonGroupLine.BlankLine _ -> None
+        | _ -> Some input
+    | Sections.RulesGroup _ -> Some input
+              
 let rulesGroup =
     %% +. (sepEndBy1 userAgent newline)
-    -- +. many1 (choice [(groupLine |>> LineGroupLine); (lineNonGroupLine)])
-    -|> fun userAgents lines ->
-             (userAgents |> Seq.ofList,
-              lines |> List.choose (fun x -> match x with LineGroupLine a -> Some a | _ -> None ) |> Seq.ofList)
-              |> RulesGroup
-              |> SectionsRulesGroup
+    -- +. many1 groupLine 
+    -|> fun userAgents groupLines -> (userAgents, groupLines |> filterUnnecessary) |> Sections.RulesGroup
 
-let robots = many1 (choice [rulesGroup; nonGroupLine])
+let robots = many1 (choice [rulesGroup; nonGroupLine |>> Sections.NonGroupLine]) |>> List.choose filt

@@ -1,9 +1,10 @@
 ﻿<Properties StartupConfiguration="{88444BED-F66D-410A-9B12-0DBE87A88CB4}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="FParseTest/Parsers.fs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FParseTest/Program.fs">
     <Files>
-      <File FileName="FParseTest/Program.fs" Line="74" Column="21" />
-      <File FileName="FParseTest/Parsers.fs" Line="65" Column="28" />
-      <File FileName="FParseTest/AST.fs" Line="25" Column="1" />
+      <File FileName="FParseTest/Program.fs" Line="18" Column="39" />
+      <File FileName="FParseTest/Parsers.fs" Line="5" Column="19" />
+      <File FileName="FParseTest/AST.fs" Line="6" Column="1" />
+      <File FileName="FParseTest/Test.txt" Line="17" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

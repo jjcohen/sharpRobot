@@ -3,24 +3,27 @@
 type URL = URL of string
 type RelativePath = RelativePath of string
 type UserAgent = UserAgent of string
+type BlankLine = BlankLine of char
+type Comment = Comment of string
+type Sitemap = Sitemap of URL
 
+[<RequireQualifiedAccess>]
 type NonGroupLine =
-| BlankLine of char
-| Comment of string
-| Sitemap of URL
+| BlankLine of BlankLine
+| Comment of Comment
+| Sitemap of Sitemap
 
+[<RequireQualifiedAccess>]
 type GroupLine =
 | Disallow of RelativePath
 | Allow of RelativePath
+| Sitemap of Sitemap
+| Comment of Comment
+| BlankLine of BlankLine
 
-type Line =
-| LineNonGroupLine of NonGroupLine
-| LineGroupLine of GroupLine
-
-type RulesGroup = RulesGroup of (UserAgent seq) * (GroupLine seq)
-
+[<RequireQualifiedAccess>]
 type Sections = 
-| SectionsRulesGroup of RulesGroup
-| SectionsNonGroupLine of NonGroupLine
+| RulesGroup of UserAgent list * GroupLine list
+| NonGroupLine of NonGroupLine
 
-type RobotsTxt = RobotsTxt of Sections seq
+type RobotsTxt = Sections list
